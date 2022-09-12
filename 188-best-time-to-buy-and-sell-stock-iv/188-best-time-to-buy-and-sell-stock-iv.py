@@ -10,6 +10,7 @@ class Solution:
             return max profit
         '''
         memo = {}
+        @lru_cache(None)
         def maxP(ind , bought , transaction):
             if (ind, bought , transaction) in memo: return memo[(ind, bought, transaction)]
             if transaction > k or  ind > len(prices) - 1: return 0
