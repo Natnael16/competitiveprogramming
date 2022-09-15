@@ -10,7 +10,6 @@ class Solution:
             return max profit
         '''
         memo = {}
-        @lru_cache(None)
         def maxP(ind , bought , transaction):
             if (ind, bought , transaction) in memo: return memo[(ind, bought, transaction)]
             if transaction > k or  ind > len(prices) - 1: return 0
@@ -21,3 +20,7 @@ class Solution:
                  memo[(ind,bought,transaction)] = max(prices[ind] + maxP(ind + 1, not bought, transaction ), maxP(ind + 1 , bought , transaction))
             return memo[(ind,bought,transaction)]
         return maxP(0,False , 0)
+    
+        '''
+        follow up make it iterative ??
+        '''
