@@ -12,13 +12,12 @@ class Solution:
             total += node.val
             path.append(node.val)
             if not node.left and not node.right:
-                if total == targetSum: self.ans.append(path)
-                return
-            
-            cp = copy.deepcopy(path)
-            cp2 = copy.deepcopy(path)
-            fun(node.left , total , cp )
-            fun(node.right, total , cp2)
+                if total == targetSum: self.ans.append(path.copy())
+            else:
+                fun(node.left , total , path)
+                fun(node.right, total , path)
+            path.pop()
+    
         fun(root,0,[])
         return self.ans
             
