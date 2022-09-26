@@ -4,7 +4,8 @@ class Solution:
         ans = 0
         for i in range(1,len(prices)):
             if prices[i] > mini:
-                ans = max(ans, prices[i] - mini)
+                if prices[i] - mini > ans:
+                    ans = prices[i] - mini
             else:
                 mini = prices[i]
         return ans
