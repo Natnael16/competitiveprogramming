@@ -1,17 +1,13 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        # print(len(nums))
-        @lru_cache(None)
-        def solve(idx):
-            if idx == len(nums) - 1: return 1
-            g_elmts = []
-            for i in range(idx , len(nums)):
-                if nums[i] > nums[idx]: g_elmts.append(solve(i))
-            if  not g_elmts: return 1
-            # print(solve.cache_info())
-            return max (g_elmts) + 1
+        n = len(nums)
+        dp = [1] * n
+        for i in range(n-2,-1,-1):
+            maxi = -inf
+            for j in range(i,n):
+                if nums[i] < nums[j]:
+                    maxi = max(maxi, dp[j])
+            if maxi != -inf: dp[i] += maxi
+        return max(dp)
+                
         
-        maxi =  - sys.maxsize
-        for num in range(len(nums)):
-            maxi = max(solve(num) , maxi)
-        return maxi
