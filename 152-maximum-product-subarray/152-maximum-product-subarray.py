@@ -9,8 +9,9 @@ class Solution:
             temp = maxi
             maxi = max(nums[i], nums[i]* maxi,nums[i]*mini)
             mini = min(nums[i], nums[i]* temp,nums[i]*mini)
+            if maxi > ans:
+                ans = maxi
             
-            ans = max(maxi, ans)
         return ans
         
 #         if len(nums) == 1: return nums[0]
