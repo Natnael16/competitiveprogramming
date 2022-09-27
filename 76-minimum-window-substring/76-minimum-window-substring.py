@@ -4,12 +4,12 @@ class Solution:
         n , m = len(s) , len(t)
         counter = Counter(t)
         tot = sum(counter.values())
-        ans = [0,n + 1]
+        ans = (0,n + 1)
         left, right = 0, 0
         while right < n + 1: 
             if tot == 0:
                 if right - left < ans[1] - ans[0]:
-                    ans = [left, right]
+                    ans = (left, right)
                 if s[left] in counter and counter[s[left]] >= 0:
                     counter[s[left]] += 1
                     tot += 1
