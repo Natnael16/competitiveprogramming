@@ -5,8 +5,8 @@ class Solution:
         """
         remainder = {0 : -1} 
         psum = 0
-        for ind , num in enumerate(nums):
-            psum += num
+        for ind in range(len(nums)):
+            psum += nums[ind]
             modRes = psum % k
             if modRes in remainder:
                 if ind - remainder[modRes] > 1: return True
