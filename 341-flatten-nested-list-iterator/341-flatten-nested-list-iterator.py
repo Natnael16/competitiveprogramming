@@ -21,18 +21,26 @@
 #        """
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        self.nums=[];
+        self.ans = []
+        self.initial = 0
         self.nest = nestedList
-        def go(u=self.nest):
-            for el in u:
-                self.nums.append(el.getInteger()) if el.isInteger() else go(el.getList());
-        go();
-    
+        self.ans += self.rec(self.nest)
+    def rec(self,nestedList):
+        ans = []
+        for element in nestedList:
+            if not element.isInteger():
+                ans += self.rec(element.getList())
+            else:
+                ans += [element]
+        return ans
+            
     def next(self) -> int:
-        return self.nums.pop(0);
+        temp = self.ans[self.initial]
+        self.initial += 1
+        return temp
     
     def hasNext(self) -> bool:
-         return len(self.nums)>0;
+         return self.initial < len(self.ans)
          
 
 # Your NestedIterator object will be instantiated and called as such:
