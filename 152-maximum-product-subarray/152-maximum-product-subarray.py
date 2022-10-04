@@ -1,17 +1,16 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
        
-        ans = max(nums)
-        maxi , mini = nums[-1] , nums[-1]
-        # set max and min from self and num * maxi and num  * mini
-        
-        for i in range(len(nums) - 2, -1,-1):
-            temp = maxi
-            maxi = max(nums[i], nums[i]* maxi,nums[i]*mini)
-            mini = min(nums[i], nums[i]* temp,nums[i]*mini)
-            if maxi > ans:
-                ans = maxi
-            
+        prevMax = nums[0]
+        prevMin = nums[0]
+        ans = nums[0]
+
+        for i in range(1,len(nums)):
+            pMin,pMax = prevMin,prevMax       
+            prevMin = min(nums[i],nums[i]*pMin,nums[i]*pMax)
+            prevMax = max(nums[i],nums[i]*pMin,nums[i]*pMax)
+            ans = max(prevMax,ans)
+
         return ans
         
 #         if len(nums) == 1: return nums[0]
