@@ -25,7 +25,7 @@ class TimeMap:
                 left = mid + 1
             else:
                 best = mid
-                print(arr,mid)
+                
                 return arr[mid][0]
         return arr[best][0] if best!= -1 else ""
 
