@@ -1,35 +1,25 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        '''
-            def generate(out, )
-            
-        '''
-        self.res = []
-        def validP(arr):
+        self.ans = []
+        def isValid(s):
             stack = []
-            for b in arr:
-                if b == "(":
-                    stack.append(b)
-                if b == ")":
-                    if stack:
-                        stack.pop()
-                    else: return False
+            for i in s:
+                if i == "(":
+                    stack.append(i)
+                elif not stack:
+                    return False
+                elif stack[-1] == "(":
+                    stack.pop()
             return True if not stack else False
-                
-            
-        def generate(out  , opening , closing , n):
-            if len(out) == 2*n:
-                if validP(out):
-                    self.res.append("".join(out))
-            if opening < n:
-                out.append("(")
-                generate(out,  opening + 1 ,closing , n)
-                out.pop()
-            if closing < n:
-                out.append(")")
-                generate(out,  opening ,closing + 1 , n)
-                out.pop()
-        generate([] , 0 , 0 , n)
-        return self.res
-            
-                
+                        
+        def backtrack(open_count , close_count, path):
+            if open_count == 0 and close_count == 0:
+                if isValid(path):
+                    self.ans.append(path)
+                return
+            if open_count:
+                backtrack(open_count - 1,close_count,path+'(')
+            if close_count:
+                backtrack(open_count,close_count-1,path+")")
+        backtrack(n,n,"")
+        return self.ans
