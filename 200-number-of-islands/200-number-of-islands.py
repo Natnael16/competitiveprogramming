@@ -1,22 +1,28 @@
 class Solution:
-    def dfs(self, grid, i, j):
-            if i<0 or j<0 or i>=len(grid) or j>=len(grid[0]) or grid[i][j] != '1':
-                return
-            grid[i][j] = '#'
-            self.dfs(grid, i+1, j)
-            self.dfs(grid, i-1, j)
-            self.dfs(grid, i, j+1)
-            self.dfs(grid, i, j-1)
     def numIslands(self, grid: List[List[str]]) -> int:
-        dirs = [0,1,0,-1,0]
-        inbound = lambda x , y : 0 <= x < len(grid) and 0 <= y < len(grid[0])
+        row_len , col_len = len(grid), len(grid[0])
+        directions = (1,0,-1,0,1)
+        def inbound(row, col):
+            return 0 <= row < row_len and 0 <= col < col_len
         
-        
-        count = 0
-        for row in range(len(grid)):
-            for col in range(len(grid[0])):
-                if grid[row][col] == "1":
-                    count += 1
-                    self.dfs(grid , row , col)
+        def dfs(row, col):
+            if not inbound(row, col): return 
+            if grid[row][col] == "0": return 
+            grid[row][col] = "0"
+            for d in range(len(directions) - 1):
+                new_row , new_col = row + directions[d],col + directions[d + 1]
+                dfs(new_row, new_col)
                 
-        return count 
+            
+    
+        count = 0
+        for row in range(row_len):
+            for col in range(col_len):
+                if grid[row][col] == "1":
+                    dfs(row,col)
+                    count +=1
+    
+        return count
+        
+        
+        
