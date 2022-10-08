@@ -6,9 +6,9 @@ class Solution:
         
         if num % 3  == 0:
             last_num = num // 3 + 1
-            return [i for i in range(last_num - 2,last_num+1)]
+            return (i for i in range(last_num - 2,last_num+1))
         else:
-            return []
+            return ()
         
         
         
