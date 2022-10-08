@@ -11,10 +11,11 @@ class Solution:
             if (row in rows) or (col in cols) or (row + col in sums) or (row - col in diff): return False
             return True
         
-        self.ans = []
+        self.ans = 0
         def backtrack(queen,row,path):
             if row == n and not queen:
-                self.ans.append(list(path))
+                self.ans += 1
+                return
             elif row == n and queen > 0: return
             
             for col in range(n):
@@ -36,4 +37,4 @@ class Solution:
                     diff.remove(row - col)
                     
         backtrack(n,0,[])
-        return len(self.ans)
+        return self.ans
