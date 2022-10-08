@@ -30,7 +30,9 @@ class Solution:
             while target in nums_set:
                 count += 1
                 target += 1
-            maxi = max(maxi , count)
+            if count > maxi:
+                maxi = count
+            
         return maxi
             
             
