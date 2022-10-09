@@ -6,21 +6,12 @@
 #         self.right = right
 class Solution:
     def findTarget(self, root: Optional[TreeNode], target: int) -> bool:
-        nums = []
-        def preorder(node):
-            if not node: return 
-            
-            preorder(node.left)
-            nums.append(node.val)
-            preorder(node.right)
-        preorder(root)
-        
-        front , back = 0, len(nums) - 1
-        while front < back:
-            if nums[front ] + nums[back] > target:
-                back -= 1
-            elif nums[front] + nums[back] < target:
-                front += 1
-            else: return True
-        return False
-            
+        seen = set()
+        q = deque([root])
+        while q:
+            cur = q.pop()
+            if not cur: continue
+            if target - cur.val in seen: return True
+            seen.add(cur.val)
+            q.append(cur.left)
+            q.append(cur.right)
