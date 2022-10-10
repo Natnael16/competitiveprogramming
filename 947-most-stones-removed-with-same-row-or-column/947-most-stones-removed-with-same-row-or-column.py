@@ -35,14 +35,11 @@ class Solution:
             same_col = col_map[col]
             for j in range(len(same_col) - 1):
                 union(same_col[j], same_col[j + 1])
-        seen = set()
-        ans = 0
-        for r in root:
-            upmost = find(r)
-            if upmost not in seen:
-                ans += rank[upmost] - 1
-                seen.add(upmost)
-        return ans
+        
+        distinct_region = 0
+        for r in range(len(root)):
+            if find(r) == r: distinct_region += 1
+        return stones_len - distinct_region
                 
             
     
