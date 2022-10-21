@@ -7,16 +7,19 @@
 class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
         @lru_cache(None)
-        def dp(node, can_rob):
+        def dp(node):
             
             if not node: return 0
+            rob = node.val
             
-            if not can_rob:
-                return dp(node.left,not can_rob) + dp(node.right,not can_rob)
+            if node.left:
+                rob  += dp(node.left.left) + dp(node.left.right)
+                
+            if node.right:
+                rob += dp(node.right.left) + dp(node.right.right)
             
-            rob_left , pass_left = dp(node.left,not can_rob) , dp(node.left, can_rob)
-            rob_right , pass_right =  dp(node.right,not can_rob) , dp(node.right, can_rob)
+            dont_rob = dp(node.right) + dp(node.left)
             
-            return max(node.val + rob_left + rob_right, pass_left + pass_right)
-            
-        return dp(root,True)
+            return max(rob,dont_rob)
+
+        return dp(root)
