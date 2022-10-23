@@ -13,7 +13,8 @@ class Solution:
             if fast.next:
                 fast = fast.next.next
             else:
-                break
+                prev.next = slow.next
+                return head
             prev = slow
             slow = slow.next
         prev.next = slow.next
