@@ -1,7 +1,9 @@
 class Solution:
     def concatenatedBinary(self, n: int) -> int:
         mod = 10**9 + 7
-        bin_string = ""
+        ans = 0
         for num in range(1, n + 1):
-            bin_string += bin(num).split("b")[1]
-        return int(bin_string,base=2) % mod
+            digits = math.floor(math.log2(num) + 1)
+            ans = ((ans << digits) + num ) %mod
+            
+        return ans
