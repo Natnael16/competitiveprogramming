@@ -4,14 +4,12 @@ class Solution:
         shift = 1
         neg_count = 0
         for _ in range(32):
-            one_count, zero_count = 0,0
+            one_count = 0
             for num in nums:
                 if num < 0:
                     neg_count += 1
                 if num & shift:
                     one_count += 1
-                else:
-                    zero_count += 1
             
             if one_count % 3:
                 number |= shift
