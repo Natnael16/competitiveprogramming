@@ -1,14 +1,14 @@
 class Solution:
     def makeGood(self, s: str) -> str:
-        lowers = string.ascii_lowercase
-        uppers = string.ascii_uppercase
-        while True:
-            initial_len = len(s)
-            for i in range(len(lowers)):
-                delete = lowers[i] + uppers[i]
-                s = s.replace(delete,"")
-                delete = uppers[i] + lowers[i]
-                s = s.replace(delete,"")
-            if initial_len == len(s):
-                break
-        return s
+        stack = []
+        
+        for char in s:
+            if not stack:
+                stack.append(char)
+            else:
+                if stack[-1] != char and char.lower() == stack[-1].lower():
+                    stack.pop()
+                else:
+                    stack.append(char)
+        return "".join(stack)
+                
