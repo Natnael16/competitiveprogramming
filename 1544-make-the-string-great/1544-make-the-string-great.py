@@ -3,12 +3,9 @@ class Solution:
         stack = []
         
         for char in s:
-            if not stack:
-                stack.append(char)
+            if stack and stack[-1] != char and char.lower() == stack[-1].lower():
+                stack.pop()
             else:
-                if stack[-1] != char and char.lower() == stack[-1].lower():
-                    stack.pop()
-                else:
-                    stack.append(char)
+                stack.append(char)
         return "".join(stack)
                 
