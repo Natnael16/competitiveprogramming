@@ -13,6 +13,8 @@ class Solution:
                 return False
             
             return canSplit(index + 1, sum1 + nums[index], length1 + 1) or canSplit(index + 1, sum1,length1)
+        
+        #Prunning
         for i in range(1,nums_len):
             if not total * i % nums_len:
                 return canSplit(0,0,0)
