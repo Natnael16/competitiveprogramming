@@ -11,5 +11,4 @@ class Solution:
             else:
                 steps += (cur_pos + 1)*2
                 cur_capacity = capacity
-                
         return steps
