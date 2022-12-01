@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        @lru_cache(None)
+        # @lru_cache(None)
         def maxHeight(node):
             if not node:
                 return 0
