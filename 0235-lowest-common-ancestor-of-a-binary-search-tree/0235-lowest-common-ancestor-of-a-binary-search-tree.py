@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution:
-    @lru_cache(None)
+    # @lru_cache(None)
     def find(self,node,target):
             if not node:
                 return False
