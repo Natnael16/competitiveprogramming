@@ -5,6 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    @lru_cache(None)
     def depth(self,node):
         if not node:
             return 0
