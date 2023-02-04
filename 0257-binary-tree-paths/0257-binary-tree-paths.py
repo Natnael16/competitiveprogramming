@@ -7,7 +7,7 @@
 class Solution:
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
         result = []
-        self.getPaths(root,[],result)
+        self.getPaths(root,"",result)
             
         return result
         
@@ -15,13 +15,12 @@ class Solution:
         if not node:
             return
         if not node.left and not node.right:
-            result.append('->'.join(map(str, path + [node.val])))
+            result.append(path + f"{node.val}")
             return
-        path.append(node.val)
-        self.getPaths(node.left,path,result)
-        path.pop()
-        path.append(node.val)
-        self.getPaths(node.right,path,result)
-        path.pop()
+        
+        self.getPaths(node.left,path + f"{node.val}" + "->",result)
+       
+        self.getPaths(node.right,path + f"{node.val}" + "->" ,result)
+        
         
         
