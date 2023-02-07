@@ -1,14 +1,18 @@
 class Solution:
     def numRollsToTarget(self, n: int, k: int, target: int) -> int:
-        nums = [i for i in range(1,k+1)]
+        mod = 10**9 + 7
+        
         @lru_cache(None)
-        def dp(tar , freq):
-            if tar <=0 or freq == 0:
-                if tar == 0 and freq == 0:
-                    return 1
+        def dp(cur_tar,tries):
+            if cur_tar == 0 and tries == 0:
+                return 1
+            if cur_tar < 0 or tries == 0:
                 return 0
-            tot = 0
-            for num in nums:
-                tot += dp(tar - num, freq -1)
-            return tot
-        return dp(target,n) % (10**9 + 7)
+            count = 0
+            for page in range(1,k+1):
+                count += dp(cur_tar - page,tries - 1)
+            return count % mod
+        return dp(target,n)
+            
+            
+            
