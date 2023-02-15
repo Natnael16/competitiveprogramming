@@ -12,7 +12,7 @@ class Solution:
                 tar += 1
             if st >= length or tar >= length:
                 break
-                
+        
             if start[st] == "L" and st < tar:
                 return False
             if start[st] == "R" and st > tar:
