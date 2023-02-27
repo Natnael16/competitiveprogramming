@@ -10,14 +10,15 @@ class Solution:
         cur_node = head
         slow ,fast = head, head
         difference = 1
-        while difference != n:
-            fast = fast.next
-            difference += 1
-            
+        
         while fast.next != None:
-            fast = fast.next
-            prev = slow
-            slow = slow.next
+            if difference != n:
+                fast = fast.next
+                difference += 1
+            else:  
+                fast = fast.next
+                prev = slow
+                slow = slow.next
         
         prev.next = slow.next
         
